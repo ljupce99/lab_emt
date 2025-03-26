@@ -15,10 +15,10 @@ public class SmestuvanjeController {
     public SmestuvanjeController(SmestuvanjeService smestuvanjeService) {
         this.smestuvanjeService = smestuvanjeService;
     }
-//    @GetMapping("/list")
-//    public List<Smestuvanje> getAllsmestuvanje() {
-//        return smestuvanjeService.listAll();
-//    }
+    @GetMapping("/list")
+    public List<Smestuvanje> getAllsmestuvanje() {
+        return smestuvanjeService.listAll();
+    }
 
 
     @PostMapping("/add")

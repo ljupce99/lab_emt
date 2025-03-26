@@ -23,6 +23,8 @@ public class Host {
         this.country = country;
     }
 
+
+
     public String getSurname() {
         return surname;
     }
