@@ -23,6 +23,7 @@ public class HostControllre {
     public Host addHost(@RequestBody HostDto host) {
         return hostService.save(host);
     }
+
 //    @DeleteMapping("/delete/{id}")
 //    public String deleteHost(@PathVariable Long id) {
 //        hostService.delete(id);

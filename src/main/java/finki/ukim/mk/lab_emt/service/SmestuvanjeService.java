@@ -14,5 +14,5 @@ public interface SmestuvanjeService {
     public void delete(Long id);
     public Optional<Smestuvanje> update(Long id, SmestuvanjeDto country);
 
-    public Optional<Smestuvanje> iznajmenoSmestuvanje(Long id);
+//    public Optional<Smestuvanje> iznajmenoSmestuvanje(Long id);
 }

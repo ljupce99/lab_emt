@@ -39,10 +39,10 @@ public class SmestuvanjeController {
         return smestuvanjeService.update(id, smestuvanje).get();
     }
 
-    @PutMapping("/iznajmi/{id}")
-    public Smestuvanje iznajmiSmestuvanje(@PathVariable Long id) {
-        return smestuvanjeService.iznajmenoSmestuvanje(id).get();
-    }
+//    @PutMapping("/iznajmi/{id}")
+//    public Smestuvanje iznajmiSmestuvanje(@PathVariable Long id) {
+//        return smestuvanjeService.iznajmenoSmestuvanje(id).get();
+//    }
 
 
 

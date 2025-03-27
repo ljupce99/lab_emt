@@ -51,15 +51,15 @@ public class SmestuvanjeServiceimp implements SmestuvanjeService {
         });
     }
 
-    @Override
-    public Optional<Smestuvanje> iznajmenoSmestuvanje(Long id) {
-        return smestuvanjeRepository.findById(id).map(exist->{
-            if(exist.getNumRooms()>0) {
-                exist.setNumRooms(exist.getNumRooms()-1);
-            }else {
-                return null;
-            }
-            return smestuvanjeRepository.save(exist);
-        });
-    }
+//    @Override
+//    public Optional<Smestuvanje> iznajmenoSmestuvanje(Long id) {
+//        return smestuvanjeRepository.findById(id).map(exist->{
+//            if(exist.getNumRooms()>0) {
+//                exist.setNumRooms(exist.getNumRooms()-1);
+//            }else {
+//                return null;
+//            }
+//            return smestuvanjeRepository.save(exist);
+//        });
+//    }
 }
