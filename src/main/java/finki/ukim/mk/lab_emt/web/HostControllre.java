@@ -2,7 +2,7 @@ package finki.ukim.mk.lab_emt.web;
 
 import finki.ukim.mk.lab_emt.model.Host;
 import finki.ukim.mk.lab_emt.model.dto.HostDto;
-import finki.ukim.mk.lab_emt.service.HostService;
+import finki.ukim.mk.lab_emt.service.DomainServices.HostDomainService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,18 +10,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/host")
 public class HostControllre {
-    private final HostService hostService;
+    private final HostDomainService hostDomainService;
 
-    public HostControllre(HostService hostService) {
-        this.hostService = hostService;
+    public HostControllre(HostDomainService hostDomainService) {
+        this.hostDomainService = hostDomainService;
     }
     @GetMapping("/list")
     public List<Host> getAllhosts() {
-        return hostService.listAll();
+        return hostDomainService.listAll();
     }
     @PostMapping("/add")
     public Host addHost(@RequestBody HostDto host) {
-        return hostService.save(host);
+        return hostDomainService.save(host);
     }
 
 //    @DeleteMapping("/delete/{id}")

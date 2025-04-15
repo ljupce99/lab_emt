@@ -11,37 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 public class Country {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
     String continent;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getContinent() {
-        return continent;
-    }
-
-    public void setContinent(String continent) {
-        this.continent = continent;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Country(String name, String continent) {
         this.name = name;
-    }
-
-    public Country() {
+        this.continent = continent;
     }
 }

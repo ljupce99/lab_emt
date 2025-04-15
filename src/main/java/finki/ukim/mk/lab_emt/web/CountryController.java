@@ -1,8 +1,7 @@
 package finki.ukim.mk.lab_emt.web;
 
 import finki.ukim.mk.lab_emt.model.Country;
-import finki.ukim.mk.lab_emt.model.dto.CountryDto;
-import finki.ukim.mk.lab_emt.service.CountryService;
+import finki.ukim.mk.lab_emt.service.DomainServices.CountryDomainService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,19 +9,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/country")
 public class CountryController {
-    private final CountryService countryService;
+    private final CountryDomainService countryDomainService;
 
 
-    public CountryController(CountryService countryService) {
-        this.countryService = countryService;
+    public CountryController(CountryDomainService countryDomainService) {
+        this.countryDomainService = countryDomainService;
     }
     @GetMapping("/list")
     public List<Country> getAllCountries() {
-        return countryService.listAll();
+        return countryDomainService.listAll();
     }
     @PostMapping("/add")
     public Country addCountry(@RequestBody Country country) {
-        return countryService.save(country);
+        return countryDomainService.save(country);
     }
 //    @DeleteMapping("/delete/{id}")
 //    public String deleteCountry(@PathVariable Long id) {

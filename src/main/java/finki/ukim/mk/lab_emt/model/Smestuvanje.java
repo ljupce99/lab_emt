@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 public class Smestuvanje {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,38 +27,4 @@ public class Smestuvanje {
         this.numRooms = numRooms;
     }
 
-    public Host getHost() {
-        return host;
-    }
-
-    public void setHost(Host host) {
-        this.host = host;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getNumRooms() {
-        return numRooms;
-    }
-
-    public void setNumRooms(Integer numRooms) {
-        this.numRooms = numRooms;
-    }
-
-    public Smestuvanje() {
-    }
 }

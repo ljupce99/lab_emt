@@ -1,23 +1,20 @@
-package finki.ukim.mk.lab_emt.service.imp;
+package finki.ukim.mk.lab_emt.service.DomainServices.imp;
 
 import finki.ukim.mk.lab_emt.model.Host;
-import finki.ukim.mk.lab_emt.model.dto.HostDto;
 import finki.ukim.mk.lab_emt.repository.HostRepository;
-import finki.ukim.mk.lab_emt.service.CountryService;
-import finki.ukim.mk.lab_emt.service.HostService;
+import finki.ukim.mk.lab_emt.service.DomainServices.HostDomainService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class HostServiceimp implements HostService {
+public class HostDomainServiceimp implements HostDomainService {
     private final HostRepository hostRepository;
-    private final CountryService countryService;
 
-    public HostServiceimp(HostRepository hostRepository, CountryService countryService) {
+    public HostDomainServiceimp(HostRepository hostRepository) {
         this.hostRepository = hostRepository;
-        this.countryService = countryService;
+
     }
 
     @Override
@@ -27,12 +24,13 @@ public class HostServiceimp implements HostService {
 
     @Override
     public Optional<Host> findById(Long id) {
+
         return hostRepository.findById(id);
     }
 
     @Override
-    public Host save(HostDto country) {
-        return hostRepository.save(new Host(country.getName(), country.getSurname(), countryService.findById(country.getCountry()).get()));
+    public Optional<Host> save(Host country) {
+        return Optional.of(hostRepository.save(new Host(country.getName(), country.getSurname(),country.getCountry() )));
     }
 
     @Override
@@ -41,11 +39,11 @@ public class HostServiceimp implements HostService {
     }
 
     @Override
-    public Optional<Host> update(Long id, HostDto country) {
+    public Optional<Host> update(Long id, Host country) {
         return hostRepository.findById(id).map(exist->{
             exist.setName(country.getName());
             exist.setSurname(country.getSurname());
-            exist.setCountry(countryService.findById(country.getCountry()).get());
+            exist.setCountry(country.getCountry());
             return hostRepository.save(exist);
         });
     }
