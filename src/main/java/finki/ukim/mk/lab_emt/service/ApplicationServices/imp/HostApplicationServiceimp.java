@@ -37,7 +37,6 @@ public class HostApplicationServiceimp implements HostApplicationService {
         Optional<Country> country=countryDomainService.findById(ch.countryId());
         return hostDomainService.save(ch.toHost(country.get())).map(DisplayHostDto::from);
     }
-
     @Override
     public void delete(Long id) {
         hostDomainService.delete(id);

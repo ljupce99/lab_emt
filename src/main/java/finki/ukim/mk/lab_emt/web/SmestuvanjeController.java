@@ -1,48 +1,48 @@
 package finki.ukim.mk.lab_emt.web;
 
-import finki.ukim.mk.lab_emt.model.Smestuvanje;
-import finki.ukim.mk.lab_emt.model.dto.SmestuvanjeDto;
-import finki.ukim.mk.lab_emt.service.DomainServices.SmestuvanjeDomainService;
+import finki.ukim.mk.lab_emt.dto.CreateSmestuvanjeDto;
+import finki.ukim.mk.lab_emt.dto.DisplaySmestuvanjeDto;
+import finki.ukim.mk.lab_emt.service.ApplicationServices.imp.SmestuvanjeApplicationServiceimp;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/smestuvanje")
+@Tag(name = "smestuvanje", description = "Endpoints for managing smestuvanje")
 public class SmestuvanjeController {
-    private final SmestuvanjeDomainService smestuvanjeDomainService;
+    private final SmestuvanjeApplicationServiceimp smestuvanjeApplicationServiceimp;
 
-    public SmestuvanjeController(SmestuvanjeDomainService smestuvanjeDomainService) {
-        this.smestuvanjeDomainService = smestuvanjeDomainService;
+    public SmestuvanjeController(SmestuvanjeApplicationServiceimp smestuvanjeApplicationServiceimp) {
+        this.smestuvanjeApplicationServiceimp = smestuvanjeApplicationServiceimp;
     }
+    @Operation(summary = "get list of all smestuvanje")
     @GetMapping("/list")
-    public List<Smestuvanje> getAllsmestuvanje() {
-        return smestuvanjeDomainService.listAll();
+    public List<DisplaySmestuvanjeDto> getAllsmestuvanje() {
+        return smestuvanjeApplicationServiceimp.listAll();
     }
 
-
+    @Operation(summary = "add new smestuvanje to app")
     @PostMapping("/add")
-    public Smestuvanje addSmestuvanje(@RequestBody SmestuvanjeDto smestuvanje) {
-        return smestuvanjeDomainService.save(smestuvanje);
+    public DisplaySmestuvanjeDto addSmestuvanje(@RequestBody CreateSmestuvanjeDto smestuvanje) {
+        return smestuvanjeApplicationServiceimp.save(smestuvanje).get();
     }
 
-
+    @Operation(summary = "delete smestuvanje with id")
     @DeleteMapping("/delete/{id}")
-    public String deleteSmestuvanje(@PathVariable Long id) {
-        smestuvanjeDomainService.delete(id);
-        return "redirect:/api/smestuvanje/list";
+    public void deleteSmestuvanje(@PathVariable Long id) {
+        smestuvanjeApplicationServiceimp.delete(id);
+//        return "redirect:/api/smestuvanje/list";
     }
 
-
+    @Operation(summary = "edit smestuvanje with id")
     @PutMapping("/edit/{id}")
-    public Smestuvanje editSmestuvanje(@PathVariable Long id, @RequestBody SmestuvanjeDto smestuvanje) {
-        return smestuvanjeDomainService.update(id, smestuvanje).get();
+    public DisplaySmestuvanjeDto editSmestuvanje(@PathVariable Long id, @RequestBody CreateSmestuvanjeDto smestuvanje) {
+        return smestuvanjeApplicationServiceimp.update(id, smestuvanje).get();
     }
 
-//    @PutMapping("/iznajmi/{id}")
-//    public Smestuvanje iznajmiSmestuvanje(@PathVariable Long id) {
-//        return smestuvanjeService.iznajmenoSmestuvanje(id).get();
-//    }
 
 
 

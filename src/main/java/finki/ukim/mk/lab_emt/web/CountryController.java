@@ -1,35 +1,32 @@
 package finki.ukim.mk.lab_emt.web;
 
-import finki.ukim.mk.lab_emt.model.Country;
-import finki.ukim.mk.lab_emt.service.DomainServices.CountryDomainService;
+import finki.ukim.mk.lab_emt.dto.CreateCountryDto;
+import finki.ukim.mk.lab_emt.dto.DisplayCountryDto;
+import finki.ukim.mk.lab_emt.service.ApplicationServices.CountryApplicationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/country")
+@Tag(name = "Country api", description = "Endpoints for managing country")
 public class CountryController {
-    private final CountryDomainService countryDomainService;
+    private final CountryApplicationService applicationService;
 
-
-    public CountryController(CountryDomainService countryDomainService) {
-        this.countryDomainService = countryDomainService;
+    public CountryController(CountryApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
+    @Operation(summary = "get list of all Countries")
     @GetMapping("/list")
-    public List<Country> getAllCountries() {
-        return countryDomainService.listAll();
+    public List<DisplayCountryDto> getAllCountries() {
+        return applicationService.listAll();
     }
+    @Operation(summary = "add new Country")
     @PostMapping("/add")
-    public Country addCountry(@RequestBody Country country) {
-        return countryDomainService.save(country);
+    public DisplayCountryDto addCountry(@RequestBody CreateCountryDto country) {
+        return applicationService.save(country).get();
     }
-//    @DeleteMapping("/delete/{id}")
-//    public String deleteCountry(@PathVariable Long id) {
-//        countryService.delete(id);
-//        return "redirect:/api/country/list";
-//    }
-//    @PostMapping("/edit/{id}")
-//    public Country editCountry(@PathVariable Long id, @RequestBody CountryDto country) {
-//        return countryService.update(id,country).get();
-//    }
+
 }
