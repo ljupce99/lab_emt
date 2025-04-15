@@ -20,6 +20,8 @@ public class Smestuvanje {
     Host host;
     Integer numRooms;
 
+    boolean iznajmeno = false;
+
     public Smestuvanje(String name, Category category, Host host, Integer numRooms) {
         this.name = name;
         this.category = category;

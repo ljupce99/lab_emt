@@ -1,3 +1,4 @@
+
 package finki.ukim.mk.lab_emt.model;
 
 import jakarta.persistence.*;
@@ -22,12 +23,19 @@ public class Reservation {
     @ManyToOne
     Smestuvanje smestuvanje;
 
-    public Reservation(Smestuvanje smestuvanje, int smesteni, LocalDate dodatum, LocalDate oddatum, String name) {
+    @ManyToOne
+    User user;
+
+    boolean confirmed = false;
+
+    public Reservation(Smestuvanje smestuvanje, int smesteni, LocalDate dodatum, LocalDate oddatum, String name,User user) {
         this.smestuvanje = smestuvanje;
         this.smesteni = smesteni;
         this.dodatum = dodatum;
         this.oddatum = oddatum;
         this.name = name;
+        this.user = user;
+
     }
 
 }

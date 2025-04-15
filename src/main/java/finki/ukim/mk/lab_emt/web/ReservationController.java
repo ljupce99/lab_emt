@@ -5,6 +5,8 @@ import finki.ukim.mk.lab_emt.dto.DisplayReservationDto;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.ReservationApplicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,29 +21,27 @@ public class ReservationController {
     public ReservationController(ReservationApplicationService reservationApplicationService) {
         this.reservationApplicationService = reservationApplicationService;
     }
-    @Operation(summary = "get list of all reservations")
-    @GetMapping("/list")
-    public List<DisplayReservationDto> getAllreservation() {
-        return reservationApplicationService.findAll();
+
+    @Operation(summary = "Add temporary reservation")
+    @PostMapping("/reservations")
+    public DisplayReservationDto addReservation(@RequestBody CreateReservationDto dto) {
+        String usernam = SecurityContextHolder.getContext().getAuthentication().getName();
+        return reservationApplicationService.addTemporaryReservation(dto,usernam).get();
     }
 
-    @Operation(summary = "add new reservation to app")
-    @PostMapping("/add")
-    public DisplayReservationDto addReservation(@RequestBody CreateReservationDto reservationDto ) {
-        return reservationApplicationService.save(reservationDto).get();
-    }
-    @Operation(summary = "delete reservation with id")
-    @DeleteMapping("/delete/{id}")
-    public void deleteReservation(@PathVariable Long id) {
-        reservationApplicationService.delete(id);
-//        return "redirect:/api/reservation/list";
-    }
-    @Operation(summary = "edit reservation with id")
-    @PostMapping("/edit/{id}")
-    public DisplayReservationDto editReservation(@PathVariable Long id, @RequestBody CreateReservationDto reservationDto) {
-        return reservationApplicationService.update(id,reservationDto).get();
+    @Operation(summary = "Get temporary reservations")
+    @GetMapping("/reservations/list")
+    public List<DisplayReservationDto> getTemporaryReservations() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return reservationApplicationService.getTemporaryReservationsForUser(username);
     }
 
+    @Operation(summary = "Confirm all reservations")
+    @PostMapping("/reservations/confirm")
+    public void confirmReservations() {
+        String usernam = SecurityContextHolder.getContext().getAuthentication().getName();
+        reservationApplicationService.confirmAllReservationsForUser(usernam);
+    }
 
 
 }

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class User implements UserDetails {
 
     private String surname;
     private Role role;
+    @OneToMany
+    private List<Smestuvanje> tempReservation  = new ArrayList<>();
 
     public User(String username, String password, String name, String surname, Role role) {
         this.username = username;

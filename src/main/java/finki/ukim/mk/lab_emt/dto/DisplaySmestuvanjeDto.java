@@ -4,15 +4,16 @@ import finki.ukim.mk.lab_emt.model.Smestuvanje;
 
 import java.util.List;
 
-public record DisplaySmestuvanjeDto(Long id, String name, String category, String hostName, Integer numRooms) {
+public record DisplaySmestuvanjeDto(Long id, String name, String category, String hostName, Integer numRooms,boolean iznajmeno) {
 
     public static DisplaySmestuvanjeDto from(Smestuvanje s) {
         return new DisplaySmestuvanjeDto(
                 s.getId(),
                 s.getName(),
-                s.getCategory().name(), // assuming Category is enum
+                s.getCategory().name(),
                 s.getHost().getName() + " " + s.getHost().getSurname(),
-                s.getNumRooms()
+                s.getNumRooms(),
+                s.isIznajmeno()
         );
     }
 
