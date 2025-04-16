@@ -2,6 +2,7 @@ package finki.ukim.mk.lab_emt.web;
 
 import finki.ukim.mk.lab_emt.dto.CreateReservationDto;
 import finki.ukim.mk.lab_emt.dto.DisplayReservationDto;
+import finki.ukim.mk.lab_emt.model.exceptions.SmestuvanjeIsIznajmenoExeption;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.ReservationApplicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -26,7 +28,15 @@ public class ReservationController {
     @PostMapping("/reservations")
     public DisplayReservationDto addReservation(@RequestBody CreateReservationDto dto) {
         String usernam = SecurityContextHolder.getContext().getAuthentication().getName();
+//        try {
+//
+//        }catch (SmestuvanjeIsIznajmenoExeption e) {
+//            e.printStackTrace();
+//            return null;
+//        }
         return reservationApplicationService.addTemporaryReservation(dto,usernam).get();
+
+
     }
 
     @Operation(summary = "Get temporary reservations")

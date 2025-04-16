@@ -3,6 +3,7 @@ package finki.ukim.mk.lab_emt.service.DomainServices.imp;
 import finki.ukim.mk.lab_emt.model.Reservation;
 import finki.ukim.mk.lab_emt.model.Smestuvanje;
 import finki.ukim.mk.lab_emt.model.User;
+import finki.ukim.mk.lab_emt.model.exceptions.SmestuvanjeIsIznajmenoExeption;
 import finki.ukim.mk.lab_emt.repository.ReservationRepository;
 import finki.ukim.mk.lab_emt.repository.SmestuvanjeRepository;
 import finki.ukim.mk.lab_emt.repository.UserRepository;
@@ -27,7 +28,9 @@ public class ReservationDomainServiceimp implements ReservationDomainService {
 
     @Override
     public Optional<Reservation> addTemporaryReservation(Reservation reservation) {
-
+        if(reservation.getSmestuvanje().isIznajmeno()){
+            throw new SmestuvanjeIsIznajmenoExeption("Iznajmeno");
+        }
         return Optional.of(reservationRepository.save(reservation));
     }
 
@@ -44,6 +47,7 @@ public class ReservationDomainServiceimp implements ReservationDomainService {
         reservations.forEach(reservation -> {
             reservation.setConfirmed(true);
             Smestuvanje smestuvanje =smestuvanjeRepository.findById(reservation.getSmestuvanje().getId()).get();
+
             smestuvanje.setIznajmeno(true);
 
             smestuvanjeRepository.save(smestuvanje);
