@@ -55,36 +55,36 @@ public class ReservationDomainServiceimp implements ReservationDomainService {
         });
     }
 
-//
-//    @Override
-//    public Optional<Reservation> save(Reservation reservation) {
-//        return Optional.of(reservationRepository.save(new Reservation(reservation.getSmestuvanje(),reservation.getSmesteni(),reservation.getDodatum(),reservation.getOddatum(),reservation.getName())));
-//    }
-//
-//    @Override
-//    public Optional<Reservation> findById(Long id) {
-//        return reservationRepository.findById(id);
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        reservationRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public Optional<Reservation> update(Long id, Reservation reservation) {
-//        return reservationRepository.findById(id).map(exist->{
-//            exist.setName(reservation.getName());
-//            exist.setSmesteni(reservation.getSmesteni());
-//            exist.setDodatum(reservation.getDodatum());
-//            exist.setOddatum(reservation.getOddatum());
-//            exist.setSmestuvanje(reservation.getSmestuvanje());
-//            return reservationRepository.save(exist);
-//        });
-//    }
-//
-//    @Override
-//    public List<Reservation> findAll() {
-//        return reservationRepository.findAll();
-//    }
+
+    @Override
+    public Optional<Reservation> save(Reservation reservation) {
+        return Optional.of(reservationRepository.save(new Reservation(reservation.getSmestuvanje(),reservation.getSmesteni(),reservation.getDodatum(),reservation.getOddatum(),reservation.getName(),reservation.getUser())));
+    }
+
+    @Override
+    public Optional<Reservation> findById(Long id) {
+        return reservationRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        reservationRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Reservation> update(Long id, Reservation reservation) {
+        return reservationRepository.findById(id).map(exist->{
+            exist.setName(reservation.getName());
+            exist.setSmesteni(reservation.getSmesteni());
+            exist.setDodatum(reservation.getDodatum());
+            exist.setOddatum(reservation.getOddatum());
+            exist.setSmestuvanje(reservation.getSmestuvanje());
+            return reservationRepository.save(exist);
+        });
+    }
+
+    @Override
+    public List<Reservation> findAll() {
+        return reservationRepository.findAll();
+    }
 }

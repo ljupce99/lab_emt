@@ -44,28 +44,34 @@ public class ReservationApplicationServiceimp implements ReservationApplicationS
     }
 
 
-//    @Override
-//    public Optional<DisplayReservationDto> save(CreateReservationDto reservation) {
-//        return reservationDomainService.save(reservation.toReservation(smestuvanjeDomainService.findById(reservation.smestuvanjeId()).get())).map(DisplayReservationDto::from);
-//    }
-//
-//    @Override
-//    public Optional<DisplayReservationDto> findById(Long id) {
-//        return reservationDomainService.findById(id).map(DisplayReservationDto::from);
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        reservationDomainService.delete(id);
-//    }
-//
-//    @Override
-//    public Optional<DisplayReservationDto> update(Long id, CreateReservationDto reservation) {
-//        return reservationDomainService.update(id,reservation.toReservation(smestuvanjeDomainService.findById(reservation.smestuvanjeId()).get())).map(DisplayReservationDto::from);
-//    }
-//
-//    @Override
-//    public List<DisplayReservationDto> findAll() {
-//        return DisplayReservationDto.from(reservationDomainService.findAll());
-//    }
+    @Override
+    public Optional<DisplayReservationDto> save(CreateReservationDto reservation) {
+        return reservationDomainService.save(reservation.toReservation(
+                smestuvanjeDomainService.findById(reservation.smestuvanjeId()).get(),
+                userDomainService.findByUsername(reservation.user())
+                )).map(DisplayReservationDto::from);
+    }
+
+    @Override
+    public Optional<DisplayReservationDto> findById(Long id) {
+        return reservationDomainService.findById(id).map(DisplayReservationDto::from);
+    }
+
+    @Override
+    public void delete(Long id) {
+        reservationDomainService.delete(id);
+    }
+
+    @Override
+    public Optional<DisplayReservationDto> update(Long id, CreateReservationDto reservation) {
+        return reservationDomainService.update(id,reservation.toReservation(
+                smestuvanjeDomainService.findById(reservation.smestuvanjeId()).get(),
+                userDomainService.findByUsername(reservation.user())
+                )).map(DisplayReservationDto::from);
+    }
+
+    @Override
+    public List<DisplayReservationDto> findAll() {
+        return DisplayReservationDto.from(reservationDomainService.findAll());
+    }
 }

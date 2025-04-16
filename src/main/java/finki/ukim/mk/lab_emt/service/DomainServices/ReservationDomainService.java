@@ -17,10 +17,10 @@ public interface ReservationDomainService {
     public void confirmAllReservationsForUser(String username);
 
 //
-//    public Optional<Reservation> save(Reservation reservation);//
-//    public Optional<Reservation> findById(Long id);//
-//    public void delete(Long id);//
-//    public Optional<Reservation> update(Long id, Reservation reservation);//
-//    public List<Reservation> findAll(); //
+    public Optional<Reservation> save(Reservation reservation);//
+    public Optional<Reservation> findById(Long id);//
+    public void delete(Long id);//
+    public Optional<Reservation> update(Long id, Reservation reservation);//
+    public List<Reservation> findAll(); //
 
 }

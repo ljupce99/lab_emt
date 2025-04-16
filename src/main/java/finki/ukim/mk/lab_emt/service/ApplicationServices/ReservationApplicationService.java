@@ -18,11 +18,11 @@ public interface ReservationApplicationService {
     public void confirmAllReservationsForUser(String username);
 
 
-//    public Optional<DisplayReservationDto> save(CreateReservationDto reservation);//
-//    public Optional<DisplayReservationDto> findById(Long id);//
-//    public void delete(Long id);//
-//    public Optional<DisplayReservationDto> update(Long id,CreateReservationDto reservation);//
-//    public List<DisplayReservationDto> findAll(); //
+    public Optional<DisplayReservationDto> save(CreateReservationDto reservation);//
+    public Optional<DisplayReservationDto> findById(Long id);//
+    public void delete(Long id);//
+    public Optional<DisplayReservationDto> update(Long id,CreateReservationDto reservation);//
+    public List<DisplayReservationDto> findAll(); //
 
 
 }

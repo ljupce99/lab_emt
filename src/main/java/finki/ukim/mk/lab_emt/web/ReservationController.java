@@ -54,4 +54,24 @@ public class ReservationController {
     }
 
 
+    @GetMapping("/list")
+    public List<DisplayReservationDto> getAllreservation() {
+        return reservationApplicationService.findAll();
+    }
+
+
+//    @PostMapping("/add")
+//    public DisplayReservationDto addReservation(@RequestBody CreateReservationDto reservationDto ) {
+//        return reservationApplicationService.save(reservationDto);
+//    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteReservation(@PathVariable Long id) {
+        reservationApplicationService.delete(id);
+    }
+    @PostMapping("/edit/{id}")
+    public DisplayReservationDto editReservation(@PathVariable Long id, @RequestBody CreateReservationDto reservationDto) {
+        return reservationApplicationService.update(id,reservationDto).get();
+    }
+
 }
