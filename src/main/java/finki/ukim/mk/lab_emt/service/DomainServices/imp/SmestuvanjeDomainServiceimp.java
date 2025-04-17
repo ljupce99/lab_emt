@@ -1,10 +1,12 @@
 package finki.ukim.mk.lab_emt.service.DomainServices.imp;
 
+//import finki.ukim.mk.lab_emt.dto.DisplayStatistic;
 import finki.ukim.mk.lab_emt.model.Smestuvanje;
 import finki.ukim.mk.lab_emt.repository.SmestuvanjeRepository;
 import finki.ukim.mk.lab_emt.service.DomainServices.SmestuvanjeDomainService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +50,7 @@ public class SmestuvanjeDomainServiceimp implements SmestuvanjeDomainService {
     }
 
     @Override
-    public String Statistic() {
+    public HashMap<String, Integer> Statistic() {
         List<Smestuvanje> All=smestuvanjeRepository.findAll();
 //        ROOM, HOUSE, FLAT, APARTMENT, HOTEL, MOTEL;
 
@@ -60,7 +62,9 @@ public class SmestuvanjeDomainServiceimp implements SmestuvanjeDomainService {
         int motel=0;
 
 
+
         for (Smestuvanje smestuvanje : All) {
+
             switch (smestuvanje.getCategory().toString()){
                 case "ROOM": room++;
                     break;
@@ -81,7 +85,14 @@ public class SmestuvanjeDomainServiceimp implements SmestuvanjeDomainService {
                     break;
             }
         }
-        String result=String.format("ROOM:%s HOUSE:%s FLAT:%s APARTMENT:%s HOTEL:%s MOTEL:%s",room,house,flat,apartment,hotel,motel);
+        HashMap<String,Integer> result=new HashMap<>();
+        result.put("room",room);
+        result.put("house",house);
+        result.put("flat",flat);
+        result.put("apartment",apartment);
+        result.put("hotel",hotel);
+        result.put("motel",motel);
+
 
         return result;
     }

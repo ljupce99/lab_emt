@@ -4,6 +4,7 @@ package finki.ukim.mk.lab_emt.service.ApplicationServices;
 import finki.ukim.mk.lab_emt.dto.CreateSmestuvanjeDto;
 import finki.ukim.mk.lab_emt.dto.DisplaySmestuvanjeDto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,5 +16,5 @@ public interface SmestuvanjeApplicationService {
     public void delete(Long id);
     public Optional<DisplaySmestuvanjeDto> update(Long id, CreateSmestuvanjeDto country);
 
-    public String Statistic();
+    public HashMap<String,Integer> Statistic();
 }

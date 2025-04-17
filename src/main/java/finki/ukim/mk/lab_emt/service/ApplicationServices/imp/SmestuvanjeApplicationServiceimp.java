@@ -9,6 +9,7 @@ import finki.ukim.mk.lab_emt.service.DomainServices.HostDomainService;
 import finki.ukim.mk.lab_emt.service.DomainServices.SmestuvanjeDomainService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,7 @@ public class SmestuvanjeApplicationServiceimp implements SmestuvanjeApplicationS
     }
 
     @Override
-    public String Statistic() {
+    public HashMap<String,Integer> Statistic() {
         return smestuvanjeDomainService.Statistic();
     }
 }

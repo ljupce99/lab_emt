@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -46,7 +47,7 @@ public class SmestuvanjeController {
 
     @Operation(summary = "Statistic from category")
     @GetMapping("/stac")
-    public String getStatistic() {
+    public HashMap<String,Integer> getStatistic() {
         return smestuvanjeApplicationServiceimp.Statistic();
     }
 
