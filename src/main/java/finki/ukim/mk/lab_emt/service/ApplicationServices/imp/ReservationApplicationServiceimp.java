@@ -63,11 +63,11 @@ public class ReservationApplicationServiceimp implements ReservationApplicationS
     }
 
     @Override
-    public Optional<DisplayReservationDto> update(Long id, CreateReservationDto reservation) {
+    public Optional<DisplayReservationDto> update(Long id, CreateReservationDto reservation,String username) {
         return reservationDomainService.update(id,reservation.toReservation(
                 smestuvanjeDomainService.findById(reservation.smestuvanjeId()).get(),
                 userDomainService.findByUsername(reservation.user())
-                )).map(DisplayReservationDto::from);
+                ),username).map(DisplayReservationDto::from);
     }
 
     @Override

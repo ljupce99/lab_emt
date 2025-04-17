@@ -44,6 +44,13 @@ public class SmestuvanjeController {
     }
 
 
+    @Operation(summary = "Statistic from category")
+    @GetMapping("/stac")
+    public String getStatistic() {
+        return smestuvanjeApplicationServiceimp.Statistic();
+    }
+
+
 
 
 }

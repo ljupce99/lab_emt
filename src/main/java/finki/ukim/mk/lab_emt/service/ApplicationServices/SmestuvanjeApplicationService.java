@@ -14,4 +14,6 @@ public interface SmestuvanjeApplicationService {
     public Optional<DisplaySmestuvanjeDto> save(CreateSmestuvanjeDto country);
     public void delete(Long id);
     public Optional<DisplaySmestuvanjeDto> update(Long id, CreateSmestuvanjeDto country);
+
+    public String Statistic();
 }

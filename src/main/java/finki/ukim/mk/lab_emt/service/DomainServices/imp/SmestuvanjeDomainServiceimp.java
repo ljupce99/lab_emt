@@ -47,4 +47,43 @@ public class SmestuvanjeDomainServiceimp implements SmestuvanjeDomainService {
         });
     }
 
+    @Override
+    public String Statistic() {
+        List<Smestuvanje> All=smestuvanjeRepository.findAll();
+//        ROOM, HOUSE, FLAT, APARTMENT, HOTEL, MOTEL;
+
+        int room=0;
+        int house=0;
+        int flat=0;
+        int apartment=0;
+        int hotel=0;
+        int motel=0;
+
+
+        for (Smestuvanje smestuvanje : All) {
+            switch (smestuvanje.getCategory().toString()){
+                case "ROOM": room++;
+                    break;
+                case "HOUSE":
+                    house++;
+                    break;
+                case "FLAT":
+                    flat++;
+                    break;
+                case "APARTMENT":
+                    apartment++;
+                    break;
+                case "HOTEL":
+                    hotel++;
+                    break;
+                case "MOTEL":
+                    motel++;
+                    break;
+            }
+        }
+        String result=String.format("ROOM:%s HOUSE:%s FLAT:%s APARTMENT:%s HOTEL:%s MOTEL:%s",room,house,flat,apartment,hotel,motel);
+
+        return result;
+    }
+
 }

@@ -21,7 +21,7 @@ public interface ReservationApplicationService {
     public Optional<DisplayReservationDto> save(CreateReservationDto reservation);//
     public Optional<DisplayReservationDto> findById(Long id);//
     public void delete(Long id);//
-    public Optional<DisplayReservationDto> update(Long id,CreateReservationDto reservation);//
+    public Optional<DisplayReservationDto> update(Long id,CreateReservationDto reservation,String username);//
     public List<DisplayReservationDto> findAll(); //
 
 

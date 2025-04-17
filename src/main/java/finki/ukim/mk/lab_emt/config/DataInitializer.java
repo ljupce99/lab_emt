@@ -40,7 +40,7 @@ public class DataInitializer {
         Host host3=hostRepository.save(new Host("na", "dm",country3));
 
         Smestuvanje smestuvanje1=smestuvanjeRepository.save(new Smestuvanje("grant", Category.HOTEL,host1,100));
-        Smestuvanje smestuvanje2=smestuvanjeRepository.save(new Smestuvanje("victo", Category.APARTMENT,host2,10));
+        Smestuvanje smestuvanje2=smestuvanjeRepository.save(new Smestuvanje("victo", Category.ROOM,host2,10));
         Smestuvanje smestuvanje3=smestuvanjeRepository.save(new Smestuvanje("baraka", Category.ROOM,host3,2));
 
 //        reservationRepository.save(new Reservation(smestuvanje1,4, LocalDate.now(),LocalDate.now(),"ljupce"));

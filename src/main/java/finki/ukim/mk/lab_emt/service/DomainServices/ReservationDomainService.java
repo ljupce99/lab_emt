@@ -20,7 +20,8 @@ public interface ReservationDomainService {
     public Optional<Reservation> save(Reservation reservation);//
     public Optional<Reservation> findById(Long id);//
     public void delete(Long id);//
-    public Optional<Reservation> update(Long id, Reservation reservation);//
+    public Optional<Reservation> update(Long id, Reservation reservation,String username);//
     public List<Reservation> findAll(); //
+
 
 }

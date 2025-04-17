@@ -12,4 +12,6 @@ public interface SmestuvanjeDomainService {
     public void delete(Long id);
     public Optional<Smestuvanje> update(Long id, Smestuvanje country);
 
+    public String Statistic();
+
 }

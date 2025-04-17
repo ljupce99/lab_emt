@@ -6,12 +6,14 @@ import finki.ukim.mk.lab_emt.model.exceptions.SmestuvanjeIsIznajmenoExeption;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.ReservationApplicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/reservation")
@@ -26,16 +28,21 @@ public class ReservationController {
 
     @Operation(summary = "Add temporary reservation")
     @PostMapping("/reservations")
-    public DisplayReservationDto addReservation(@RequestBody CreateReservationDto dto) {
+    public ResponseEntity<?> addReservation(@RequestBody CreateReservationDto dto) {
         String usernam = SecurityContextHolder.getContext().getAuthentication().getName();
-//        try {
-//
-//        }catch (SmestuvanjeIsIznajmenoExeption e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-        return reservationApplicationService.addTemporaryReservation(dto,usernam).get();
+        Optional<DisplayReservationDto> dtoret;
+        try {
+//            dto.
+            dtoret = reservationApplicationService.addTemporaryReservation(dto,usernam);
 
+        }catch (SmestuvanjeIsIznajmenoExeption e) {
+//            e.printStackTrace();
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body("No rooms available for this accommodation.");
+
+        }
+        return ResponseEntity.ok(dtoret.get());
 
     }
 
@@ -71,7 +78,10 @@ public class ReservationController {
     }
     @PostMapping("/edit/{id}")
     public DisplayReservationDto editReservation(@PathVariable Long id, @RequestBody CreateReservationDto reservationDto) {
-        return reservationApplicationService.update(id,reservationDto).get();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return reservationApplicationService.update(id,reservationDto,username).get();
     }
 
 }
+//statistika kolku smestuvanja ima

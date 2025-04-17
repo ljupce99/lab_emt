@@ -50,4 +50,9 @@ public class SmestuvanjeApplicationServiceimp implements SmestuvanjeApplicationS
         Category cat=Category.values()[country.categoryId().intValue()];
         return smestuvanjeDomainService.update(id,country.toSmestuvanje(cat,host.get())).map(DisplaySmestuvanjeDto::from);
     }
+
+    @Override
+    public String Statistic() {
+        return smestuvanjeDomainService.Statistic();
+    }
 }

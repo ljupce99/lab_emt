@@ -72,13 +72,15 @@ public class ReservationDomainServiceimp implements ReservationDomainService {
     }
 
     @Override
-    public Optional<Reservation> update(Long id, Reservation reservation) {
+    public Optional<Reservation> update(Long id, Reservation reservation,String username) {
         return reservationRepository.findById(id).map(exist->{
             exist.setName(reservation.getName());
             exist.setSmesteni(reservation.getSmesteni());
             exist.setDodatum(reservation.getDodatum());
             exist.setOddatum(reservation.getOddatum());
             exist.setSmestuvanje(reservation.getSmestuvanje());
+            exist.setUser(userRepository.findByUsername(username).get());
+//            exist.setConfirmed(reservation.isConfirmed());
             return reservationRepository.save(exist);
         });
     }
@@ -87,4 +89,6 @@ public class ReservationDomainServiceimp implements ReservationDomainService {
     public List<Reservation> findAll() {
         return reservationRepository.findAll();
     }
+
+
 }
