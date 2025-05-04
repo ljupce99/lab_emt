@@ -1,6 +1,7 @@
 package finki.ukim.mk.lab_emt.service.DomainServices;
 
 import finki.ukim.mk.lab_emt.model.Host;
+import finki.ukim.mk.lab_emt.model.HostNameProjection;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,7 @@
 package finki.ukim.mk.lab_emt.service.DomainServices.imp;
 
 import finki.ukim.mk.lab_emt.model.Host;
+import finki.ukim.mk.lab_emt.model.HostNameProjection;
 import finki.ukim.mk.lab_emt.repository.HostRepository;
 import finki.ukim.mk.lab_emt.service.DomainServices.HostDomainService;
 import org.springframework.stereotype.Service;
@@ -47,4 +48,6 @@ public class HostDomainServiceimp implements HostDomainService {
             return hostRepository.save(exist);
         });
     }
+
+
 }
