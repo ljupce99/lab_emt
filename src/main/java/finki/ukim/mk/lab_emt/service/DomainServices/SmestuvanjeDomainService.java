@@ -15,4 +15,6 @@ public interface SmestuvanjeDomainService {
 
     public HashMap<String,Integer> Statistic();
 
+
+
 }

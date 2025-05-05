@@ -30,6 +30,7 @@ public class User implements UserDetails {
     private String name;
 
     private String surname;
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany
     private List<Smestuvanje> tempReservation  = new ArrayList<>();

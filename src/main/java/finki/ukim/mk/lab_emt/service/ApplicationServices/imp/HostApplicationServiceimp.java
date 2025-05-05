@@ -3,9 +3,11 @@ package finki.ukim.mk.lab_emt.service.ApplicationServices.imp;
 import finki.ukim.mk.lab_emt.dto.CreateHostDto;
 import finki.ukim.mk.lab_emt.dto.DisplayHostDto;
 import finki.ukim.mk.lab_emt.model.Country;
+import finki.ukim.mk.lab_emt.repository.AccommodationsByHostViewsRepository;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.HostApplicationService;
 import finki.ukim.mk.lab_emt.service.DomainServices.CountryDomainService;
 import finki.ukim.mk.lab_emt.service.DomainServices.HostDomainService;
+import finki.ukim.mk.lab_emt.views.AccommodationsByHostViews;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,5 +48,10 @@ public class HostApplicationServiceimp implements HostApplicationService {
     public Optional<DisplayHostDto> update(Long id, CreateHostDto ch) {
         Optional<Country> country=countryDomainService.findById(ch.countryId());
         return hostDomainService.update(id,ch.toHost(country.get())).map(DisplayHostDto::from);
+    }
+
+    @Override
+    public List<AccommodationsByHostViews> findAll() {
+        return hostDomainService.findAll();
     }
 }

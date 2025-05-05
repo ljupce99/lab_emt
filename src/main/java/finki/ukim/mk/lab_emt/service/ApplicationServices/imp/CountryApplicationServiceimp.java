@@ -2,8 +2,10 @@ package finki.ukim.mk.lab_emt.service.ApplicationServices.imp;
 
 import finki.ukim.mk.lab_emt.dto.CreateCountryDto;
 import finki.ukim.mk.lab_emt.dto.DisplayCountryDto;
+import finki.ukim.mk.lab_emt.repository.HostsByCountryViewsRepository;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.CountryApplicationService;
 import finki.ukim.mk.lab_emt.service.DomainServices.CountryDomainService;
+import finki.ukim.mk.lab_emt.views.HostsByCountryViews;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +44,10 @@ public class CountryApplicationServiceimp implements CountryApplicationService {
     @Override
     public Optional<DisplayCountryDto> update(Long id, CreateCountryDto cc) {
         return countryDomainService.update(id, cc.toCountry()).map(DisplayCountryDto::from);
+    }
+
+    @Override
+    public List<HostsByCountryViews> findAll() {
+        return countryDomainService.findAll();
     }
 }

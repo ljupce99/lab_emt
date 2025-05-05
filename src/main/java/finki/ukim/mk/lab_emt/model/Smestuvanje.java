@@ -15,6 +15,7 @@ public class Smestuvanje {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
+    @Enumerated(EnumType.STRING)
     Category category;
     @ManyToOne
     Host host;
