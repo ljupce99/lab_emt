@@ -60,8 +60,21 @@ public class JwtSecurityWebConfig {
                 )
                 .authorizeHttpRequests(authorizeHttpRequestsCustomizer ->
                                 authorizeHttpRequestsCustomizer
-//
+                                        .requestMatchers(
+                                                "/swagger-ui/**",
+                                                "/v3/api-docs/**",
+                                                "/api/user/register",
+                                                "/api/user/login"
+                                        )
+                                        .permitAll()
+//                                .requestMatchers(
+//                                        "/api/categories",
+//                                        "/api/manufacturers",
+//                                        "/api/products"
+//                                )
+//                                .hasAnyRole("USER", "ADMIN")
                                         .anyRequest().permitAll()
+//                                        .hasAnyRole("USER", "ADMIN")
                 )
                 .sessionManagement(sessionManagementConfigurer ->
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

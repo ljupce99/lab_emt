@@ -52,7 +52,7 @@
 //                passwordEncoder.encode("admin"),
 //                "admin",
 //                "admin",
-//                Role.ROLE_ADMIN
+//                Role.ROLE_HOST
 //        ));
 //
 //        userRepository.save(new User(
