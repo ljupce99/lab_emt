@@ -60,6 +60,11 @@ public class HostDomainServiceimp implements HostDomainService {
     }
 
     @Override
+    public List<HostNameProjection> findAllNameSurname() {
+        return hostRepository.findAllBy();
+    }
+
+    @Override
     public void refreshMaterializedView() {
         accommodationsByHostViewsRepository.refreshMaterializedView();
     }

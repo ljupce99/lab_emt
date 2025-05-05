@@ -16,6 +16,7 @@ public interface HostDomainService {
     public Optional<Host> update(Long id, Host country);
 
     public List<AccommodationsByHostViews> findAll();
+    public List<HostNameProjection> findAllNameSurname();
     void refreshMaterializedView();
 
 

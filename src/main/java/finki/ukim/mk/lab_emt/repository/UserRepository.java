@@ -14,24 +14,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByUsernameAndPassword(String username, String password);
 
     Optional<User> findByUsername(String username);
-//
-//    @EntityGraph(
-//            type = EntityGraph.EntityGraphType.FETCH,
-//            attributePaths = {"carts"}
-//    )
-//    @Query("select u from User u")
-//    List<User> fetchAll();
-//
-//    @EntityGraph(
-//            type = EntityGraph.EntityGraphType.LOAD,
-//            attributePaths = {"carts"}
-//    )
-//    @Query("select u from User u")
-//    List<User> loadAll();
-//
-//    UserProjection findByRole(Role role);
 
-//    @Query("select u.username, u.name, u.surname from User u")
-//    List<UserProjection> takeUsernameAndNameAndSurnameByProjection();
+
 
 }

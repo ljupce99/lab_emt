@@ -17,16 +17,34 @@ public class UserDomainServiceimp implements UserDomainService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     public UserDomainServiceimp(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(
-                username));
+    public User register(String username, String password, String repeatPassword, String name, String surname, Role role) {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty())
+            throw new InvalidUsernameOrPasswordException("Invalid username or password");
+        if (!password.equals(repeatPassword)) throw new PasswordsDoNotMatchException("Passwords do not match");
+        if (userRepository.findByUsername(username).isPresent())
+            throw new UsernameAlreadyExistsException(username);
+        User user = new User(username, passwordEncoder.encode(password), name, surname, role);
+        return userRepository.save(user);
+
+    }
+
+    @Override
+    public User login(String username, String password) {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty())
+            throw new InvalidArgumentsException("Invalid username or password");
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(username));
+        if (!passwordEncoder.matches(password, user.getPassword()))
+            throw new InvalidUserCredentialsException();
+        return user;
+
     }
 
     @Override
@@ -36,29 +54,9 @@ public class UserDomainServiceimp implements UserDomainService {
     }
 
     @Override
-    public User register(
-            String username,
-            String password,
-            String repeatPassword,
-            String name,
-            String surname,
-            Role userRole
-    ) {
-        if (username == null || username.isEmpty() || password == null || password.isEmpty())
-            throw new InvalidUsernameOrPasswordException("greska username/password");
-        if (!password.equals(repeatPassword)) throw new PasswordsDoNotMatchException("greska password");
-        if (userRepository.findByUsername(username).isPresent())
-            throw new UsernameAlreadyExistsException(username);
-        User user = new User(username, passwordEncoder.encode(password), name, surname, userRole);
-        return userRepository.save(user);
-    }
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(
+                username));
 
-    @Override
-    public User login(String username, String password) {
-        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
-            throw new InvalidArgumentsException("greska argumenti");
-        }
-        return userRepository.findByUsernameAndPassword(username, password).orElseThrow(
-                InvalidUserCredentialsException::new);
     }
 }

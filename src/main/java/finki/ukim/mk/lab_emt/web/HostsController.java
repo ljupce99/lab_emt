@@ -1,6 +1,8 @@
 package finki.ukim.mk.lab_emt.web;
 
+import finki.ukim.mk.lab_emt.model.HostNameProjection;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.CountryApplicationService;
+import finki.ukim.mk.lab_emt.service.ApplicationServices.HostApplicationService;
 import finki.ukim.mk.lab_emt.views.AccommodationsByHostViews;
 import finki.ukim.mk.lab_emt.views.HostsByCountryViews;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,9 +18,11 @@ import java.util.List;
 @Tag(name = "Hosts api", description = "Endpoints for managing hosts")
 public class HostsController {
     private final CountryApplicationService countryApplicationService;
+    private final HostApplicationService hostApplicationService;
 
-    public HostsController(CountryApplicationService countryApplicationService) {
+    public HostsController(CountryApplicationService countryApplicationService, HostApplicationService hostApplicationService) {
         this.countryApplicationService = countryApplicationService;
+        this.hostApplicationService = hostApplicationService;
     }
 
     @Operation(summary = "get list of all byCountry")
@@ -26,4 +30,11 @@ public class HostsController {
     public List<HostsByCountryViews> getAllbyCountry() {
         return countryApplicationService.findAll();
     }
+
+    @Operation(summary = "get list of all host names and surname")
+    @GetMapping("/names")
+    public List<HostNameProjection> getAllNameSurname() {
+        return hostApplicationService.findAllNameSurname();
+    }
+
 }
