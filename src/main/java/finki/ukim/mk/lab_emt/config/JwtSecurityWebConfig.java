@@ -1,5 +1,6 @@
 package finki.ukim.mk.lab_emt.config;
 
+import finki.ukim.mk.lab_emt.model.enums.Role;
 import finki.ukim.mk.lab_emt.web.filters.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -67,14 +68,8 @@ public class JwtSecurityWebConfig {
                                                 "/api/user/login"
                                         )
                                         .permitAll()
-//                                .requestMatchers(
-//                                        "/api/categories",
-//                                        "/api/manufacturers",
-//                                        "/api/products"
-//                                )
-//                                .hasAnyRole("USER", "ADMIN")
-                                        .anyRequest().permitAll()
-//                                        .hasAnyRole("USER", "ADMIN")
+                                        .anyRequest()
+                                        .hasAnyRole("USER", "HOST")
                 )
                 .sessionManagement(sessionManagementConfigurer ->
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

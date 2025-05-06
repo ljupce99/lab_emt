@@ -63,23 +63,7 @@
 //                Role.ROLE_USER
 //        ));
 //    }
-////    @PostConstruct
-////    public void init() {
 ////
-////        userRepository.save(new User(
-////                "admin",
-////                passwordEncoder.encode("admin"),
-////                "admin",
-////                "admin",
-////                Role.ROLE_Host
-////        ));
-////
-////        userRepository.save(new User(
-////                "user",
-////                passwordEncoder.encode("user"),
-////                "ljupce",
-////                "221277",
-////                Role.ROLE_USER
 ////        ));
 ////    }
 //}
