@@ -2,6 +2,8 @@ package finki.ukim.mk.lab_emt.service.ApplicationServices;
 
 
 import finki.ukim.mk.lab_emt.dto.CreateSmestuvanjeDto;
+import finki.ukim.mk.lab_emt.dto.DisplayHostAndCountryDto;
+import finki.ukim.mk.lab_emt.dto.DisplaySmestuvanjeAndHostDto;
 import finki.ukim.mk.lab_emt.dto.DisplaySmestuvanjeDto;
 
 import java.util.HashMap;
@@ -17,4 +19,6 @@ public interface SmestuvanjeApplicationService {
     public Optional<DisplaySmestuvanjeDto> update(Long id, CreateSmestuvanjeDto country);
 
     public HashMap<String,Integer> Statistic();
+
+    public Optional<DisplaySmestuvanjeAndHostDto> getHostById(Long id);
 }

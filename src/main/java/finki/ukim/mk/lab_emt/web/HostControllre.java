@@ -1,7 +1,9 @@
 package finki.ukim.mk.lab_emt.web;
 
 import finki.ukim.mk.lab_emt.dto.CreateHostDto;
+import finki.ukim.mk.lab_emt.dto.DisplayHostAndCountryDto;
 import finki.ukim.mk.lab_emt.dto.DisplayHostDto;
+import finki.ukim.mk.lab_emt.model.Host;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.HostApplicationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,6 +32,12 @@ public class HostControllre {
     @PostMapping("/add")
     public DisplayHostDto addHost(@RequestBody CreateHostDto host) {
         return hostApplicationService.save(host).get();
+    }
+
+    @Operation(summary = "get Host by id")
+    @GetMapping("/{id}")
+    public DisplayHostAndCountryDto gethostsbyid(@PathVariable Long id) {
+        return hostApplicationService.getHostById(id).get();
     }
 
 }

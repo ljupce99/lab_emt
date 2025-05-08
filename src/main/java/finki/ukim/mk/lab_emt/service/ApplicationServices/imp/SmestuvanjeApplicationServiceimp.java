@@ -1,6 +1,7 @@
 package finki.ukim.mk.lab_emt.service.ApplicationServices.imp;
 
 import finki.ukim.mk.lab_emt.dto.CreateSmestuvanjeDto;
+import finki.ukim.mk.lab_emt.dto.DisplaySmestuvanjeAndHostDto;
 import finki.ukim.mk.lab_emt.dto.DisplaySmestuvanjeDto;
 import finki.ukim.mk.lab_emt.model.Host;
 import finki.ukim.mk.lab_emt.model.enums.Category;
@@ -55,5 +56,10 @@ public class SmestuvanjeApplicationServiceimp implements SmestuvanjeApplicationS
     @Override
     public HashMap<String,Integer> Statistic() {
         return smestuvanjeDomainService.Statistic();
+    }
+
+    @Override
+    public Optional<DisplaySmestuvanjeAndHostDto> getHostById(Long id) {
+        return smestuvanjeDomainService.findById(id).map(DisplaySmestuvanjeAndHostDto::from);
     }
 }

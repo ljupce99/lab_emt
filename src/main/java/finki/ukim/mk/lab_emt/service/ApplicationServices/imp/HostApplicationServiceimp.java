@@ -1,10 +1,10 @@
 package finki.ukim.mk.lab_emt.service.ApplicationServices.imp;
 
 import finki.ukim.mk.lab_emt.dto.CreateHostDto;
+import finki.ukim.mk.lab_emt.dto.DisplayHostAndCountryDto;
 import finki.ukim.mk.lab_emt.dto.DisplayHostDto;
 import finki.ukim.mk.lab_emt.model.Country;
 import finki.ukim.mk.lab_emt.model.HostNameProjection;
-import finki.ukim.mk.lab_emt.repository.AccommodationsByHostViewsRepository;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.HostApplicationService;
 import finki.ukim.mk.lab_emt.service.DomainServices.CountryDomainService;
 import finki.ukim.mk.lab_emt.service.DomainServices.HostDomainService;
@@ -59,5 +59,13 @@ public class HostApplicationServiceimp implements HostApplicationService {
     @Override
     public List<AccommodationsByHostViews> findAll() {
         return hostDomainService.findAll();
+    }
+
+    @Override
+    public Optional<DisplayHostAndCountryDto> getHostById(Long id) {
+        return hostDomainService.findById(id).map(DisplayHostAndCountryDto::from);
+//        public Optional<DisplayHostDto> findById(Long id) {
+//            return hostDomainService.findById(id).map(DisplayHostDto::from);
+//        }
     }
 }
