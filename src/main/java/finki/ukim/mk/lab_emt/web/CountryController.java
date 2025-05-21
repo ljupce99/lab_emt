@@ -23,6 +23,7 @@ public class CountryController {
     public List<DisplayCountryDto> getAllCountries() {
         return applicationService.listAll();
     }
+
     @Operation(summary = "add new Country")
     @PostMapping("/add")
     public DisplayCountryDto addCountry(@RequestBody CreateCountryDto country) {

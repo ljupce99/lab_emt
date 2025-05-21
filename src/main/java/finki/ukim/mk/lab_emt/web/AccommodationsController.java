@@ -2,6 +2,7 @@ package finki.ukim.mk.lab_emt.web;
 
 import finki.ukim.mk.lab_emt.dto.*;
 import finki.ukim.mk.lab_emt.model.Host;
+import finki.ukim.mk.lab_emt.model.enums.Category;
 import finki.ukim.mk.lab_emt.repository.AccommodationsByHostViewsRepository;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.HostApplicationService;
 import finki.ukim.mk.lab_emt.service.ApplicationServices.SmestuvanjeApplicationService;
@@ -19,7 +20,7 @@ import java.util.List;
 public class AccommodationsController {
     private final HostApplicationService hostApplicationService;
     private final SmestuvanjeApplicationService smestuvanjeApplicationServiceimp;
-//promeni
+
     public AccommodationsController(HostApplicationService hostApplicationService, SmestuvanjeApplicationService smestuvanjeApplicationService) {
         this.hostApplicationService = hostApplicationService;
         this.smestuvanjeApplicationServiceimp = smestuvanjeApplicationService;
@@ -37,6 +38,7 @@ public class AccommodationsController {
     public DisplaySmestuvanjeAndHostDto gethostsbyid(@PathVariable Long id) {
         return smestuvanjeApplicationServiceimp.getHostById(id).get();
     }
+
 
     @Operation(summary = "get list of all smestuvanje")
     @GetMapping("/list")

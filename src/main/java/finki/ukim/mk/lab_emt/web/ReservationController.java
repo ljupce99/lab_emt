@@ -76,6 +76,7 @@ public class ReservationController {
     public void deleteReservation(@PathVariable Long id) {
         reservationApplicationService.delete(id);
     }
+
     @PostMapping("/edit/{id}")
     public DisplayReservationDto editReservation(@PathVariable Long id, @RequestBody CreateReservationDto reservationDto) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();

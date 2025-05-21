@@ -69,7 +69,8 @@ public class JwtSecurityWebConfig {
                                         )
                                         .permitAll()
                                         .anyRequest()
-                                        .hasAnyRole("USER", "HOST")
+                                        .permitAll()
+//                                        .hasAnyRole("USER", "HOST")
                 )
                 .sessionManagement(sessionManagementConfigurer ->
                         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
