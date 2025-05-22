@@ -29,7 +29,8 @@ public class ReservationController {
     @Operation(summary = "Add temporary reservation")
     @PostMapping("/reservations")
     public ResponseEntity<?> addReservation(@RequestBody CreateReservationDto dto) {
-        String usernam = SecurityContextHolder.getContext().getAuthentication().getName();
+//        String usernam = SecurityContextHolder.getContext().getAuthentication().getName();
+        String usernam="user";
         Optional<DisplayReservationDto> dtoret;
         try {
 //            dto.
